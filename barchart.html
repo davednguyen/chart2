@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Charting Library</title>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="script.js"></script>
+  <script>
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        // ["Peperoni", 8.94, "#b87333"],
+        // ["Silver", 10.49, "silver"],
+        // ["Gold", 19.30, "gold"],
+        // ["Platinum", 21.45, "color: #e5e4e2"]
+        ['Mushrooms', 3,"#b87333"],
+        ['Onions', 1,"red"],
+        ['Olives', 1,"green"],
+        ['Zucchini', 1,"blue"],
+        ['Pepperoni', 2,"lightgreen"],
+        ['chicken',2,"lightblue"],
+        ['sausage',4,"black"],
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "What kind of pizza did I eat",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+   </script>
+</head>
+<body>
+  <h1>Using a charting library</h1>
+
+   <!--Div that will hold the pie chart-->
+    <div id="chart_div" width="500" height="500"></div>
+    <div id="chart_div2"width="200" height="200"></div>
+    <div id="chart_div3"></div>
+    <div id="barchart_values"></div>
+</body>
+</html>
