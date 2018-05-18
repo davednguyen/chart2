@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Charting Library</title>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="script.js"></script>
+ 
+  <script>
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawDonationChart)
+      function drawDonationChart(){
+          console.log("hello I will draw a chart");
+          var data = google.visualization.arrayToDataTable([
+          ['cents', 'for each program'],
+          ['administrative costs',     4],
+          ['fundraising',      16],
+          ['youth programs',  36],
+          ['adult program', 44],    
+        ]);
+
+        var options = {
+          title: 'Percent of each program received base on each dollar donated to the organization',
+          pieHole: 0.4,
+          width:900,
+          height:500,
+          legend:'top',
+          slides:[
+              {color:'#8AD1C2'},
+              {color:'#9F8AD1'},
+              {color:'#D18A99'},
+              {color:'#BCD18A'}
+          ]
+        };
+
+     
+
+        var chart = new google.visualization.PieChart(document.getElementById('donation_chart'));
+        chart.draw(data, options);
+      };
+  </script>
+</head>
+<body>
+  <h1>Using a charting library</h1>
+   <!--Div that will hold the pie chart-->
+    <div id="donation_chart" width="800" height="800"></div>
+    
+</body>
+</html>

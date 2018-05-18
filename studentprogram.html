@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Charting Library</title>
+  <!--Load the AJAX API-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="script.js"></script>
+ 
+  <script>
+      google.charts.load('current', {'packages':['timeline']});
+      //google.charts.setOnLoadCallback(drawStudentStudyTimeline)
+      function showTimeline(){
+        drawStudentStudyTimeline();
+      }
+      function drawStudentStudyTimeline(){
+        var container = document.getElementById('studytimeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'Phase of study' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'General Ed', new Date(2018, 8, 1), new Date(2019, 4, 1) ],
+          [ 'Chose major',      new Date(2019, 5, 1),  new Date(2019, 7, 1) ],
+          [ 'take pre-major courses',  new Date(2019, 8, 1),  new Date(2020, 4, 1) ],
+          [ 'major courses',  new Date(2020, 8, 1),  new Date(2022, 4, 1) ]
+        ]);
+
+         var options = {
+            height:500         
+        };
+        chart.draw(dataTable);
+      };
+      function drawStudyBar(){
+        
+      };
+    
+  </script>
+</head>
+<body>
+  <h1>Using a charting library</h1>
+   <!--Div that will hold the pie chart-->
+    <button onclick="showTimeline()">Show study time line</button>
+    <div id="studytimeline" width="800" height="800"></div>
+    <div id="studybarchart" width="800" height="800"></div>
+</body>
+</html>
