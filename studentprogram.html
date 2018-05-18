@@ -11,9 +11,11 @@
       google.charts.load('current', {'packages':['timeline']});
       //google.charts.setOnLoadCallback(drawStudentStudyTimeline)
       function showTimeline(){
-        drawStudentStudyTimeline();
+        let color = document.getElementById('color').value;
+        console.log("color added: " + color);
+        drawStudentStudyTimeline(color);
       }
-      function drawStudentStudyTimeline(){
+      function drawStudentStudyTimeline(color){
         var container = document.getElementById('studytimeline');
         var chart = new google.visualization.Timeline(container);
         var dataTable = new google.visualization.DataTable();
@@ -29,9 +31,11 @@
         ]);
 
          var options = {
-            height:500         
+            height:500,
+            title:"Student study timeline",
+            timeline:{singleColor:color}        
         };
-        chart.draw(dataTable);
+        chart.draw(dataTable,options);
       };
       function drawStudyBar(){
         
@@ -42,6 +46,7 @@
 <body>
   <h1>Using a charting library</h1>
    <!--Div that will hold the pie chart-->
+   <input type="text" id="color" placeholder="enter your color request">
     <button onclick="showTimeline()">Show study time line</button>
     <div id="studytimeline" width="800" height="800"></div>
     <div id="studybarchart" width="800" height="800"></div>
